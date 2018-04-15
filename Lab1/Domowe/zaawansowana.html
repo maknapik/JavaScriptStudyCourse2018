@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script defer
+          src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <title>
+      Flowblade - Zaawansowana edycja
+    </title>
+  </head>
+  <body style="background-color: #cee8ea;">
+    
+    <nav>
+      <div class="w3-bar w3-blue">
+          <a href="index.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-home"></i></a>
+
+          <div class="w3-hide-small w3-dropdown-hover w3-blue">
+            <button class="w3-button" onclick="goto('wprowadzenie.html')">
+              Podstawy 
+            </button>
+            <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+              <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+              <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+            </div>
+          </div>
+
+          <div class="w3-hide-small w3-dropdown-hover w3-blue">
+              <button class="w3-button" onclick="goto('kompozytowe.html')">
+                Zaawansowane 
+              </button>
+              <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+                <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+                <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+                <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+              </div>
+            </div>
+          <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-hide-small w3-button w3-text-white">Pobierz</a>
+          <a href="index.html" class="w3-hide-small w3-bar-item w3-button w3-blue w3-right">Szukaj</a>
+          <input type="text" class="w3-hide-small w3-bar-item w3-input w3-blue w3-right" placeholder="Szukaj..">
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+      </div>
+
+    <div id="demo" class="w3-bar-block w3-orange w3-hide w3-hide-large w3-hide-medium">
+      <div class="w3-dropdown-hover w3-blue">
+          <button class="w3-button" onclick="goto('wprowadzenie.html')">
+            Podstawy 
+          </button>
+          <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+            <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+            <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+            <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+          </div>
+        </div>
+
+        <div class="w3-dropdown-hover w3-blue" onclick="goto('kompozytowe.html')">
+            <button class="w3-button">
+              Zaawansowane 
+            </button>
+            <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+              <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+              <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+            </div>
+          </div>
+          <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-bar-item w3-button w3-text-white w3-blue">Pobierz</a>
+          <input type="text" class="w3-bar-item w3-input w3-blue-gray w3-right" placeholder="Szukaj..">
+          <a href="#" class="w3-bar-item w3-button w3-blue-grey w3-right">Szukaj</a>
+    </div>
+
+  </nav>
+ 
+    <main class="w3-container w3-margin-top w3-margin-bottom">
+            <div class="w3-row">
+                    <div class="w3-col s12 l9 w3-center">
+                      <div class="w3-row">
+                          <h1>Zaawansowana edycja</h2>
+                      </div>   
+                      <div class="w3-row">
+                          <a href="javascript:printpage()" class="w3-bar-item w3-button"><i class="w3-xxlarge glyphicon glyphicon-print "></i></a>
+                          <a href="https://jliljebl.github.io/flowblade/index.html" class="w3-bar-item w3-button"><i class="w3-xxlarge glyphicon glyphicon-education "></i></a>
+                      </div>
+                    </div>
+                    <div class="w3-col l3 w3-hide-medium w3-padding w3-hide-small">
+                        <img src="img2.png" style="width: 100%;"/>
+                    </div>
+                </div>
+        <div class="w3-row w3-border w3-padding">
+            <h3>ŁĄCZENIE SEKWENCJI</h3>
+            <p>Możliwe jest zaimportowanie pełnej zawartości innej sekwencji do sekwencji aktualnie edytowanej.</p><p>
+            
+              </p><p>Wybierz Projekt-> Importuj kolejną sekwencję do tego sekw.
+                </p><p>Wybierz Importuj akcję.
+                  </p><p>Append Sequence dodaje importowaną sekwencję na końcu aktualnej Sekwencji
+                    </p><p>Wstaw Sekwencję w pozycji głowicy tworzy cięcie w pozycji głowicy i wstawia zaimportowane sekwencje w tej pozycji
+                      </p><p>Wybierz sekwencję do importu
+                        </p><p>Zauważ, że musisz mieć co najmniej dwie sekwencje do wykonania jakichkolwiek akcji importowania.
+                          </p><p>Naciśnij przycisk Importuj, aby wykonać import.
+            <h3>IMPORTOWANIE MEDIÓW Z INNEGO PROJEKTU</h3>
+            <p>Możesz importować elementy multimedialne z innego projektu.</p><p>
+            
+              </p><p>Wybierz Projekt-> Importuj media z projektu ...
+                </p><p>Wybierz plik projektu z systemu plików.
+                  </p><p>Elementy multimedialne, które nie są obecne w bieżącym projekcie, zostaną otwarte w bieżącym pojemniku. Zwróć uwagę, że 
+                    załadowanie projektu trwa kilka sekund, zanim pojawią się nowe elementy multimedialne.</p>
+            <h3>TWORZENIE KLIPÓW MOTION</h3>
+            <p>Kliknij prawym przyciskiem myszy plik multimedialny i wybierz z menu opcję Renderuj wolny / szybki ruch</p><p>
+              </p><p>Edytuj parametry nowego klipu ruchu
+                </p><p>Ustaw prędkość
+                  </p><p>Podaj nazwę i lokalizację klipu ruchu
+                    </p><p>Wybierz parametry renderowania klipu Motion. Dobrym pomysłem jest tutaj użycie formatu bezstratnego, aby uniknąć utraty jakości generacyjnej.
+                      </p><p>Wybierz zakres renderowania:
+                        </p><p>Klip pełnego źródła
+                          </p><p>From Source Clip Mark In, aby zaznaczyć
+                            </p><p>Kliknij przycisk Renderuj, aby utworzyć nowy klip filmowy
+            <h3>TWORZENIE ODWRÓCONYCH KLIPÓW</h3>
+            <p>Kliknij prawym przyciskiem myszy plik multimedialny i wybierz polecenie Renderuj plik odwróconego ruchu z menu</p><p>
+              </p><p>Edytuj parametry nowego klipu ruchu
+                </p><p>Ustaw prędkość
+                  </p><p>Podaj nazwę i lokalizację klipu odwrotnego
+                    </p><p>Wybierz parametry renderowania dla odwróconego klipu. Dobrym pomysłem jest tutaj użycie formatu bezstratnego, aby uniknąć utraty jakości generacyjnej.
+                      </p><p>Wybierz zakres renderowania:
+                        </p><p>Klip pełnego źródła
+                          </p><p>From Source Clip Mark In, aby zaznaczyć
+                            </p><p>Kliknij przycisk Renderuj, aby utworzyć nowy odwrócony klip</p>
+        </div>
+        <div class="w3-row w3-margin-top w3-center">
+            <a href="filtrowanie.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-circle-arrow-left w3-xxlarge"></i></a>
+            <a href="index.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-circle-arrow-right w3-xxlarge"></i></a>
+        </div>
+    </main>
+ 
+    <footer class="w3-container w3-blue w3-center">
+      <a class="w3-text-white" href="mailto:adres@gmail.com">Mateusz Knapik 2018</a>
+    </footer>
+
+    <script>
+        function myFunction() 
+        {
+            var x = document.getElementById("demo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function goto(link)
+        {
+            window.location.href = link;
+        }
+        function printpage()
+        {
+          window.print();
+        }
+        </script>
+
+  </body>
+</html>

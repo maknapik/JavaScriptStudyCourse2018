@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script defer
+          src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <title>
+      Flowblade - Obrazy kompozytowe
+    </title>
+  </head>
+  <body style="background-color: #cee8ea;">
+    
+    <nav>
+      <div class="w3-bar w3-blue">
+          <a href="index.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-home"></i></a>
+
+          <div class="w3-hide-small w3-dropdown-hover w3-blue">
+            <button class="w3-button" onclick="goto('wprowadzenie.html')">
+              Podstawy 
+            </button>
+            <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+              <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+              <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+            </div>
+          </div>
+
+          <div class="w3-hide-small w3-dropdown-hover w3-blue">
+              <button class="w3-button" onclick="goto('kompozytowe.html')">
+                Zaawansowane 
+              </button>
+              <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+                <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+                <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+                <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+              </div>
+            </div>
+          <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-hide-small w3-button w3-text-white">Pobierz</a>
+          <a href="index.html" class="w3-hide-small w3-bar-item w3-button w3-blue w3-right">Szukaj</a>
+          <input type="text" class="w3-hide-small w3-bar-item w3-input w3-blue w3-right" placeholder="Szukaj..">
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+      </div>
+
+    <div id="demo" class="w3-bar-block w3-orange w3-hide w3-hide-large w3-hide-medium">
+      <div class="w3-dropdown-hover w3-blue">
+          <button class="w3-button" onclick="goto('wprowadzenie.html')">
+            Podstawy 
+          </button>
+          <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+            <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+            <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+            <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+          </div>
+        </div>
+
+        <div class="w3-dropdown-hover w3-blue" onclick="goto('kompozytowe.html')">
+            <button class="w3-button">
+              Zaawansowane 
+            </button>
+            <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+              <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+              <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+            </div>
+          </div>
+          <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-bar-item w3-button w3-text-white w3-blue">Pobierz</a>
+          <input type="text" class="w3-bar-item w3-input w3-blue-gray w3-right" placeholder="Szukaj..">
+          <a href="#" class="w3-bar-item w3-button w3-blue-grey w3-right">Szukaj</a>
+    </div>
+
+  </nav>
+ 
+    <main class="w3-container w3-margin-top w3-margin-bottom">
+            <div class="w3-row">
+                    <div class="w3-col s12 l9 w3-center">
+                      <div class="w3-row">
+                          <h1>Obrazy kompozytowe</h2>
+                      </div>   
+                      <div class="w3-row">
+                          <a href="javascript:printpage()" class="w3-bar-item w3-button"><i class="w3-xxlarge glyphicon glyphicon-print "></i></a>
+                          <a href="https://jliljebl.github.io/flowblade/index.html" class="w3-bar-item w3-button"><i class="w3-xxlarge glyphicon glyphicon-education "></i></a>
+                      </div>
+                    </div>
+                    <div class="w3-col l3 w3-hide-medium w3-padding w3-hide-small">
+                        <img src="img2.png" style="width: 100%;"/>
+                    </div>
+                </div>
+        <div class="w3-row w3-border w3-padding">
+              
+                <h2>KOMPONENTOWE PRZEPŁYWY PRACY</h2>
+                <p>Tworzenie Compositor</p><p>
+                  </p><p>Kliknij prawym przyciskiem myszy na dowolnym klipie na ścieżkach od V5 do V2 i wybierz na przykład Dodaj Compositor -> Dissolve lub Add Blender -> Softlight z popupmenu, aby utworzyć nowego Compositor.
+                    </p><p>Trimmimg lub Przenoszenie Compositor
+                      </p><p>Aby przyciąć punkt początkowy i końcowy Compositora: Naciśnij i przeciągnij lewą myszą w pobliżu końca Compositor na Osi czasu.
+                        </p><p>Aby przenieść Compositor: Naciśnij i przeciągnij lewą mysz w środku Compositor na Osi czasu.
+                          </p><p>Edytowanie parametrów Compositor na karcie Compositors
+                            </p><p>Kliknij dwukrotnie Compositor with Left Mouse.
+                              </p><p>Kliknij prawą mysz na dowolnym Compositor i wybierz Open In Compositor Editor
+                                </p><p>Edytuj parametry za pomocą edytorów wartości.
+                                  </p><p>Usuwanie Compositor
+                                    </p><p>Kliknij Left Mouse na dowolnym Compositor, aby go wybrać i naciśnij klawisz Delete.</p>
+
+              <h2>KOMPOZYTOR ZOSTAJE WYKONANY OD GÓRY DO SPODU</h2>
+              <p>W Flowblade Movie Editor kolejność renderowania jest od góry do dołu, a nie od dołu do góry, tak jak w Gimpie lub Photoshopie. Podczas próby określonego typu 
+                wielowarstwowych kompozytów daje to wyniki, które wydają się nieintuicyjne, chyba że użytkownik jest świadomy renderowania kolejności Compositors.</p>
+              <h3>RENDERING A COMPOSITED FRAME</h3>
+              <p>Dla każdej klatki sprawdza się, czy na najwyższej ścieżce znajduje się Kompozytor pokrywający tę ramkę.</p><p>
+                </p><p>Jeśli taki Compositor zostanie znaleziony, wykonaj kompozyt na torze docelowym.
+                  </p><p>Ramka na torze docelowym jest teraz zmieniona i jeśli ta ramka jest używana jako źródło, używana jest zmieniona wersja
+                    </p><p>Sprawdź, czy klatka na następnej ścieżce poniżej ma komponent i jeśli zostanie znaleziony Compositor, zrób złożony obraz
+                      </p><p>Odbywa się to dla każdego utworu.
+                        </p><p>Obraz wyjściowy jest z najwyższej ścieżki, która ma nośnik na ramie i nie ma kompostora na ramie.</p>
+        </div>
+        <div class="w3-row w3-margin-top w3-center">
+            <a href="narzedzia.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-circle-arrow-left w3-xxlarge"></i></a>
+            <a href="filtrowanie.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-circle-arrow-right w3-xxlarge"></i></a>
+        </div>
+    </main>
+ 
+    <footer class="w3-container w3-blue w3-center">
+      <a class="w3-text-white" href="mailto:adres@gmail.com">Mateusz Knapik 2018</a>
+    </footer>
+
+    <script>
+        function myFunction() 
+        {
+            var x = document.getElementById("demo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function goto(link)
+        {
+            window.location.href = link;
+        }
+        function printpage()
+        {
+          window.print();
+        }
+        </script>
+
+  </body>
+</html>

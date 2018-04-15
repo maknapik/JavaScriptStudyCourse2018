@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script defer
+          src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <title>
+      Flowblade - Filtrowanie obrazu i audio
+    </title>
+  </head>
+  <body style="background-color: #cee8ea;">
+    
+    <nav>
+      <div class="w3-bar w3-blue">
+          <a href="index.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-home"></i></a>
+
+          <div class="w3-hide-small w3-dropdown-hover w3-blue">
+            <button class="w3-button" onclick="goto('wprowadzenie.html')">
+              Podstawy 
+            </button>
+            <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+              <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+              <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+            </div>
+          </div>
+
+          <div class="w3-hide-small w3-dropdown-hover w3-blue">
+              <button class="w3-button" onclick="goto('kompozytowe.html')">
+                Zaawansowane 
+              </button>
+              <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+                <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+                <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+                <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+              </div>
+            </div>
+          <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-hide-small w3-button w3-text-white">Pobierz</a>
+          <a href="index.html" class="w3-hide-small w3-bar-item w3-button w3-blue w3-right">Szukaj</a>
+          <input type="text" class="w3-hide-small w3-bar-item w3-input w3-blue w3-right" placeholder="Szukaj..">
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+      </div>
+
+    <div id="demo" class="w3-bar-block w3-orange w3-hide w3-hide-large w3-hide-medium">
+      <div class="w3-dropdown-hover w3-blue">
+          <button class="w3-button" onclick="goto('wprowadzenie.html')">
+            Podstawy 
+          </button>
+          <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+            <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+            <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+            <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+          </div>
+        </div>
+
+        <div class="w3-dropdown-hover w3-blue" onclick="goto('kompozytowe.html')">
+            <button class="w3-button">
+              Zaawansowane 
+            </button>
+            <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+              <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+              <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+            </div>
+          </div>
+          <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-bar-item w3-button w3-text-white w3-blue">Pobierz</a>
+          <input type="text" class="w3-bar-item w3-input w3-blue-gray w3-right" placeholder="Szukaj..">
+          <a href="#" class="w3-bar-item w3-button w3-blue-grey w3-right">Szukaj</a>
+    </div>
+
+  </nav>
+ 
+    <main class="w3-container w3-margin-top w3-margin-bottom">
+            <div class="w3-row">
+                    <div class="w3-col s12 l9 w3-center">
+                      <div class="w3-row">
+                          <h1>Filtrowanie obrazu i audio</h2>
+                      </div>   
+                      <div class="w3-row">
+                          <a href="javascript:printpage()" class="w3-bar-item w3-button"><i class="w3-xxlarge glyphicon glyphicon-print "></i></a>
+                          <a href="https://jliljebl.github.io/flowblade/index.html" class="w3-bar-item w3-button"><i class="w3-xxlarge glyphicon glyphicon-education "></i></a>
+                      </div>
+                    </div>
+                    <div class="w3-col l3 w3-hide-medium w3-padding w3-hide-small">
+                        <img src="img2.png" style="width: 100%;"/>
+                    </div>
+                </div>
+        <div class="w3-row w3-border w3-padding">
+          <h3>DODAWANIE FILTRA</h3>
+            <p>
+              Kliknij prawym przyciskiem myszy na dowolnym klipie i wybierz na przykład Dodaj filtr -> Rozmycie -> Pixelize z menu podręcznego.</p><p>
+                </p><p>W zakładce Filtry: dwukrotnie kliknij filtr w aktualnie wyświetlanej grupie filtrów.
+                  </p><p>Na karcie Filtry: przeciągnij filtr z aktualnie wyświetlanej grupy filtrów do tabeli Stos filtrów poniżej.
+              <h3>OTWIERANIE FILTRA DO MONTAŻU W FILTRACH TAB</h3>
+              <p>Kliknij prawym przyciskiem myszy na dowolnym klipie i wybierz Otwórz w Edytorze filtrów z menu podręcznego.</p><p>
+               <p>Kliknij dwukrotnie dowolny klip.</p>
+              <h3>EDYCJA FILTRÓW</h3>
+              <p>Parametry definiujące wyjście są edytowane w zakładce Filtry.</p><p>
+                </p><p>Klipy wyświetlają ikonę małego filtra w prawym górnym rogu, jeśli dodano do nich filtr.
+                  </p><p>Klipy będą wyświetlać ikonę szarego filtru na środku klipu podczas edytowania klipu.
+                    </p><p>Filtry, które modyfikują kanał alfa, działają tylko wtedy, gdy klip, do którego są dołączone, jest mieszany z innymi klipami za pomocą Kompozytorów.
+              <h3>KLONOWANIE FILTRÓW Z INNYCH KLIPÓW</h3>
+              <p>Kliknij prawym przyciskiem myszy na dowolnym klipie i wybierz Klonuj filtry -> Z następnego klipu lub Filtry klonów -> Z poprzedniego klipu z menu podręcznego.</p>
+              <h3>USUWANIE FILTRÓW Z KLIPÓW</h3><p>
+                </p><p>Wybierz filtr w tabeli Stosy filtrów i kliknij przycisk Usuń powyżej.
+                  </p><p>Wybierz filtr w tabeli Stosy filtrów i naciśnij klawisz Delete.
+                    </p><p>Wybierz klip lub zakres klipów na osi czasu i wybierz Wyczyść filtry z menu aplikacji.</p>
+        </div>
+        <div class="w3-row w3-margin-top w3-center">
+            <a href="kompozytowe.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-circle-arrow-left w3-xxlarge"></i></a>
+            <a href="zaawansowana.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-circle-arrow-right w3-xxlarge"></i></a>
+        </div>
+    </main>
+ 
+    <footer class="w3-container w3-blue w3-center">
+      <a class="w3-text-white" href="mailto:adres@gmail.com">Mateusz Knapik 2018</a>
+    </footer>
+
+    <script>
+        function myFunction() 
+        {
+            var x = document.getElementById("demo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function goto(link)
+        {
+            window.location.href = link;
+        }
+        function printpage()
+        {
+          window.print();
+        }
+        </script>
+
+  </body>
+</html>

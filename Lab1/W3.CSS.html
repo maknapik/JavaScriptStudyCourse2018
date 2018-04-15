@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://www.w3schools.com/w3css/4/w3.css">
+    <script defer
+          src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <title>
+      Tytuł strony
+    </title>
+  </head>
+  <body>
+    
+    <nav>
+        <div class="w3-bar w3-orange">
+            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-shopping-cart w3-xlarge"></i></a>
+            <div class="w3-hide-small w3-dropdown-hover w3-orange">
+              <button class="w3-button">
+                Produkty 
+              </button>
+              <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-white w3-card-4">
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-text-black">Komputery</a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-text-black">Produkty</a>
+              </div>
+            </div>
+            <a href="#" class="w3-hide-small w3-bar-item w3-button w3-grey w3-right">Szukaj</a>
+            <input type="text" class="w3-hide-small w3-bar-item w3-input w3-green w3-right" placeholder="Szukaj..">
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+          </div>
+      <div id="demo" class="w3-bar-block w3-orange w3-hide w3-hide-large w3-hide-medium">
+          <div class="w3-dropdown-hover w3-orange">
+              <button class="w3-button">
+                Produkty 
+              </button>
+              <div class="w3-dropdown-content w3-bar-block w3-orange w3-card-4">
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-text-black">Komputery</a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-text-black">Produkty</a>
+              </div>
+            </div>
+            <input type="text" class="w3-bar-item w3-input w3-green w3-right" placeholder="Szukaj..">
+            <a href="#" class="w3-bar-item w3-button w3-grey w3-right">Szukaj</a>
+      </div>
+
+    </nav>
+ 
+    <main>
+      <!--Tutaj treść strony-->
+ 
+      <h1>
+        Treść strony
+      </h1>
+ 
+      <pre>
+Natenczas Wojski chwycił na taśmie przypięty
+Swój róg bawoli, długi, cętkowany, kręty
+Jak wąż boa, oburącz do ust go przycisnął,
+Wzdął policzki jak banię, w oczach krwią zabłysnął,
+Zasunął wpół powieki, wciągnął w głąb pół brzucha
+I do płuc wysłał z niego cały zapas ducha,
+I zagrał: róg jak wicher, wirowatym dechem
+Niesie w puszczę muzykę i podwaja echem.
+ 
+Umilkli strzelcy, stali szczwacze zadziwieni
+Mocą, czystością, dziwną harmoniją pieni.
+Starzec cały kunszt, którym niegdyś w lasach słynął,
+Jeszcze raz przed uszami myśliwców rozwinął;
+Napełnił wnet, ożywił knieje i dąbrowy,
+Jakby psiarnię w nie wpuścił i rozpoczął łowy.
+ 
+Bo w graniu była łowów historyja krótka:
+Zrazu odzew dźwięczący, rześki: to pobudka;
+Potem jęki po jękach skomlą: to psów granie;
+A gdzieniegdzie ton twardszy jak grzmot: to strzelanie.
+  </pre>
+    </main>
+ 
+    <footer class="w3-container w3-green">
+      <!-- Tutaj treść stopki -->
+      <a href="mailto:twoj.adres.email">Imię Nazwisko</a>
+    </footer>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("demo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        </script>
+
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script defer
+          src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <title>
+      Flowblade - Dokumentacja
+    </title>
+  </head>
+  <body style="background-color: #cee8ea;">
+    
+    <nav>
+        <div class="w3-bar w3-blue">
+            <a href="index.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-home"></i></a>
+
+            <div class="w3-hide-small w3-dropdown-hover w3-blue">
+              <button class="w3-button" onclick="goto('wprowadzenie.html')">
+                Podstawy 
+              </button>
+              <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+                <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+                <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+                <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+              </div>
+            </div>
+
+            <div class="w3-hide-small w3-dropdown-hover w3-blue">
+                <button class="w3-button" onclick="goto('kompozytowe.html')">
+                  Zaawansowane 
+                </button>
+                <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+                  <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+                  <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+                  <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+                </div>
+              </div>
+            <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-hide-small w3-button w3-text-white">Pobierz</a>
+            <a href="index.html" class="w3-hide-small w3-bar-item w3-button w3-blue w3-right">Szukaj</a>
+            <input type="text" class="w3-hide-small w3-bar-item w3-input w3-blue w3-right" placeholder="Szukaj..">
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+        </div>
+
+      <div id="demo" class="w3-bar-block w3-orange w3-hide w3-hide-large w3-hide-medium">
+        <div class="w3-dropdown-hover w3-blue">
+            <button class="w3-button" onclick="goto('wprowadzenie.html')">
+              Podstawy 
+            </button>
+            <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+              <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+              <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+            </div>
+          </div>
+
+          <div class="w3-dropdown-hover w3-blue">
+              <button class="w3-button" onclick="goto('kompozytowe.html')">
+                Zaawansowane 
+              </button>
+              <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+                <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+                <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+                <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+              </div>
+            </div>
+            <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-bar-item w3-button w3-text-white w3-blue">Pobierz</a>
+            <input type="text" class="w3-bar-item w3-input w3-blue-gray w3-right" placeholder="Szukaj..">
+            <a href="#" class="w3-bar-item w3-button w3-blue-grey w3-right">Szukaj</a>
+      </div>
+
+    </nav>
+ 
+    <main class="w3-container w3-margin-top w3-margin-bottom">
+        <div class="w3-row w3-margin-top w3-center">
+            <div class="w3-third w3-button" onclick="goto('wprowadzenie.html')">
+                <div class="w3-card">
+                    <img class="w3-hover-grayscale" src="img1.jpg" style="width:100%; height: 70%;">
+                    <div class="w3-container">
+                        <h5>Wprowadzenie</h5>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="w3-third w3-button" onclick="goto('zaawansowana.html')">
+              <div class="w3-card">
+                <img class="w3-hover-grayscale" src="img2.png" style="width:100%; height: 70%;">
+                <div class="w3-container">
+                  <h5>Zaawansowane</h5>
+                </div>
+              </div>
+            </div>
+          
+            <div class="w3-third w3-button" onclick="goto('narzedzia.html')">
+              <div class="w3-card">
+                <img class="w3-hover-grayscale" src="img3.jpg" style="width:100%; height: 70%;">
+                <div class="w3-container">
+                  <h5>Narzędzia edycji</h5>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="w3-row w3-margin-top">
+            <div class="w3-col l3 w3-hide-medium w3-padding w3-hide-small">
+                    <img src="img4.png" class="w3-round" style="width:100%;">
+            </div>
+            <div class="w3-col s12 l9">
+                <div class="w3-row w3-center">
+                    <h2>Polska dokumentacja Flowblade</h2>
+                    <p>Na niniejszej stronie znajduje się część podstawowych i zaawansowanych zagadnień związanych z obsługą programu do edycji video - Flowblade
+                        W poniższej tabeli zostały zestawione poruszane tematy.
+                    </p>
+                </div>
+                <div class="w3-row">
+                    <table class="w3-table w3-striped w3-border w3-hoverable">
+                            <tr class="w3-blue">
+                                <th>Wprowadzenie</th>
+                                <th>Zaawansowane</th>
+                                <th>Narzędzia edycji</th>
+                            </tr>
+                            <tr>
+                                <td>Tworzenie nowego projektu</td>
+                                <td>Import mediów z innego projektu</td>
+                                <td>Narzędzie wstawiania</td>
+                            </tr>
+                            <tr>
+                                <td>Dodawanie i usuwanie sekwencji</td>
+                                <td>Slowmotion</td>
+                                <td>Narzędzie Trim</td>
+                            </tr>
+                            <tr>
+                                <td>Linia czasu</td>
+                                <td>Główne punkty</td>
+                                <td>Narzędzie Slip</td>
+                            </tr>
+                                
+                    </table>
+                </div>
+                <div class="w3-row w3-margin-top">
+                    <button onclick="show('But1')" class="w3-button w3-block w3-blue">
+                        Rozwiń listę dostępnych narzędzi</button>
+                        
+                        <div id="But1" class="w3-container w3-hide w3-border w3-padding w3-center">
+                          <p>Wstawianie, Nadpisywanie, Trim, Roll</p>
+                          <p>Slip, Spacer, Box</p>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-row w3-margin-top w3-center" style="background-color: rgba(12, 138, 223, 0.1);";>
+            <h2>Szybki, precyzyjny, stabilny</h2>
+            <p>Flowblade jest wielościeżkowym, nieliniowym edytorem wideo wypuszczonym na licencji GPL3. Dla początkujących i zaawansowanych, Flowblade pomoże Ci spełnić Twoją wizję obrazu i dźwięku</p>
+        </div>
+        <div class="w3-row w3-margin-top">
+            <button class="w3-button w3-block w3-blue w3-round-large" onclick="goto('https://jliljebl.github.io/flowblade/index.html')">Więcej</button>
+        </div>
+    </main>
+ 
+    <footer class="w3-container w3-blue w3-center">
+      <a class="w3-text-white" href="mailto:adres@gmail.com">Mateusz Knapik 2018</a>
+    </footer>
+
+    <script>
+        function myFunction() 
+        {
+            var x = document.getElementById("demo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function goto(link)
+        {
+            window.location.href = link;
+        }
+        function show(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        </script>
+
+  </body>
+</html>

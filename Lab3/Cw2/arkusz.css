@@ -1,0 +1,89 @@
+.empty {
+  all: initial;
+}
+
+aside  {
+  float: right;
+  width: 400px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ABABAB;
+}
+footer {
+  clear: both;
+  border-style: solid;
+  border-color: #ABABAB;
+  text-align: center;
+}      
+header {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ABABAB;
+  text-align: center;
+}    
+nav {
+  margin: 0 25px;
+  border-width: 1px;
+  border-style: solid;
+  height: 50px;
+  
+}
+nav ul {
+    text-align: center;
+    width: 20%;
+    margin: 0 auto;
+    list-style-type: none;
+}
+nav li {
+  float: left;
+}
+
+.azure {
+    background-color: #EFF;
+}
+main { 
+  float: left;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ABABAB;
+}
+main:hover {
+  animation: anim 3s infinite alternate;
+  -webkit-animation: anim 3s infinite alternate;
+}
+@keyframes anim
+{
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+  }
+  75% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@-webkit-keyframes anim
+{
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+  }
+  75% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}

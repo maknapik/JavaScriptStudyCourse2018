@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script defer
+          src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <title>
+      Flowblade - Podstawowa edycja
+    </title>
+  </head>
+  <body style="background-color: #cee8ea;">
+    
+    <nav>
+      <div class="w3-bar w3-blue">
+          <a href="index.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-home"></i></a>
+
+          <div class="w3-hide-small w3-dropdown-hover w3-blue">
+            <button class="w3-button" onclick="goto('wprowadzenie.html')">
+              Podstawy 
+            </button>
+            <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+              <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+              <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+            </div>
+          </div>
+
+          <div class="w3-hide-small w3-dropdown-hover w3-blue">
+              <button class="w3-button" onclick="goto('kompozytowe.html')">
+                Zaawansowane 
+              </button>
+              <div class="w3-hide-small w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+                <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+                <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+                <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+              </div>
+            </div>
+          <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-hide-small w3-button w3-text-white">Pobierz</a>
+          <a href="index.html" class="w3-hide-small w3-bar-item w3-button w3-blue w3-right">Szukaj</a>
+          <input type="text" class="w3-hide-small w3-bar-item w3-input w3-blue w3-right" placeholder="Szukaj..">
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+      </div>
+
+    <div id="demo" class="w3-bar-block w3-orange w3-hide w3-hide-large w3-hide-medium">
+      <div class="w3-dropdown-hover w3-blue">
+          <button class="w3-button" onclick="goto('wprowadzenie.html')">
+            Podstawy 
+          </button>
+          <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+            <a href="wprowadzenie.html" class="w3-bar-item w3-button w3-text-white">Wprowadzenie</a>
+            <a href="podstawowa.html" class="w3-bar-item w3-button w3-text-white">Podstawowa edycja</a>
+            <a href="narzedzia.html" class="w3-bar-item w3-button w3-text-white">Narzędzia edycji</a>
+          </div>
+        </div>
+
+        <div class="w3-dropdown-hover w3-blue">
+            <button class="w3-button" onclick="goto('kompozytowe.html')">
+              Zaawansowane 
+            </button>
+            <div class="w3-dropdown-content w3-bar-block w3-blue w3-card-4">
+              <a href="kompozytowe.html" class="w3-bar-item w3-button w3-text-white">Obrazy kompozytowe</a>
+              <a href="filtrowanie.html" class="w3-bar-item w3-button w3-text-white">Filtrowanie obrazu i audio</a>
+              <a href="zaawansowana.html" class="w3-bar-item w3-button w3-text-white">Zaawansowana edycja</a>
+            </div>
+          </div>
+          <a href="https://jliljebl.github.io/flowblade/download.html" class="w3-bar-item w3-button w3-text-white w3-blue">Pobierz</a>
+          <input type="text" class="w3-bar-item w3-input w3-blue-gray w3-right" placeholder="Szukaj..">
+          <a href="#" class="w3-bar-item w3-button w3-blue-grey w3-right">Szukaj</a>
+    </div>
+
+  </nav>
+ 
+    <main class="w3-container w3-margin-top w3-margin-bottom">
+        <div class="w3-row">
+            <div class="w3-col s12 l9 w3-center">
+              <div class="w3-row">
+                  <h1>Podstawowa edycja</h2>
+              </div>   
+              <div class="w3-row">
+                  <a href="javascript:printpage()" class="w3-bar-item w3-button"><i class="w3-xxlarge glyphicon glyphicon-print "></i></a>
+                  <a href="https://jliljebl.github.io/flowblade/index.html" class="w3-bar-item w3-button"><i class="w3-xxlarge glyphicon glyphicon-education "></i></a>
+              </div>
+            </div>
+            <div class="w3-col l3 w3-hide-medium w3-padding w3-hide-small">
+                <img src="img1.jpg" style="width: 100%;"/>
+            </div>
+        </div>
+        <div class="w3-row w3-border w3-padding">
+          <h3>Tworzenie nowego projektu</h3>
+            <p>Flowblade Movie Editor zapisuje pracę w plikach projektu</p>
+            <p>Aby stworzyć nowy projekt:</p>
+            <p><b>Menu:</b> Wybierz <b>Plik -> Nowy</b> z menu</p>
+            <p><b>Skrót klawiaturowy:</b> Wciśnij Control+N</p>
+            </br>
+            <p>Projekt zawiera:</p>
+            <p>jedną lub więcej sekwencji edytowanych mediów</p>
+            <p>kolekcję plików multimedialnych składowanych w pojemnikach</p>
+            </b/>
+            <p>Istnieją dwa parametry, które można wybrać dla nowego projektu:</p>
+            <p>
+                <b>Profil projektu</b> Profil projektu określa liczbę klatek na sekundę, rozmiar obrazu w 
+                pikselach i proporcje pikseli.</p>
+                <p><b>Liczba utworów</b> Wybierz liczbę ścieżek wideo i audio użytych w projekcie. 
+                Można to zmienić później, ale operacja niszczy stos Cofnij / Ponów i wszystkie 
+                Klipy osi czasu, które nie pasują do nowo utworzonej wersji Sekwencji.</p>
+            </br>
+            <h3>Dodawanie i usuwanie sekwencji</h3>
+            <p>
+                Projekt zawiera jedną lub więcej Sekwencji. Termin Sekwencja odnosi się do 
+                pełnej zawartości osi czasu tworzącej program, film.</p><p>
+              
+                W przypadku złożonych projektów czasami najlepiej jest używać wielu sekwencji do 
+                tworzenia różnych części gotowego produktu i zarządzania nimi.</p><p>
+              
+                Użyj przycisków Dodaj i Usuń w zakładce Projekt panel Sekwencje. Wszystkie sekwencje 
+                używają tego samego profilu.</p><p>
+                
+                Tworząc nową sekwencję, możesz wybrać liczbę ścieżek w sekwencji. Można to zmienić 
+                później, ale operacja niszczy stos Cofnij / Ponów i wszystkie Klipy osi czasu, 
+                które nie pasują do nowo utworzonej wersji Sekwencji.</p>
+              </br>
+            <h3>Linia czasu</h3>
+            <h4>Przewijanie linii czasu</h4>
+            <p>Naciśnij i przeciągnij pasek przewijania poniżej osi czasu</p><p>
+                Przewiń klawisz Middle Mouse + klawisz CTRL, gdy znajdziesz się na Osi czasu</p>
+            <h4>Przybliżanie linii czasu</h4>
+            <p>Kliknij przyciski Powiększ, Pomniejsz lub Powiększ długość</p><p>
+                Przewiń przycisk myszy środkowej na osi czasu</p>
+            <h4>Ustawianie aktywnych ścieżek</h4>
+            <p>Kliknij opcję Śledź aktywny przełącznik po prawej stronie obszaru Kolumna ścieżek. Najwyższy Track Aktywny Przełącznik wyświetla strzałkę skierowaną w dół, wskazując, że Wstaw z Monitora i inne przyciski umieszczają klipy na tej ścieżce.
+              </p>
+        </div>
+        <div class="w3-row w3-margin-top w3-center">
+            <a href="wprowadzenie.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-circle-arrow-left w3-xxlarge"></i></a>
+            <a href="narzedzia.html" class="w3-bar-item w3-button"><i class="glyphicon glyphicon-circle-arrow-right w3-xxlarge"></i></a>
+        </div>
+    </main>
+ 
+    <footer class="w3-container w3-blue w3-center">
+      <a class="w3-text-white" href="mailto:adres@gmail.com">Mateusz Knapik 2018</a>
+    </footer>
+
+    <script>
+        function myFunction() 
+        {
+            var x = document.getElementById("demo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else { 
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+        function goto(link)
+        {
+            window.location.href = link;
+        }
+        function printpage()
+        {
+          window.print();
+        }
+        </script>
+
+  </body>
+</html>
