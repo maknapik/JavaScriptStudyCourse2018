@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <script src="forms.js"></script>
+    <title>
+      Tytuł strony
+    </title>
+  </head>
+  <body>
+    <main>
+        <form>
+            <input name="tekst" type="text">
+            <input type="button" value="Submit" onclick="javascript:work()">
+            <input type="button" value="Show students" onclick="javascript:show()">
+        </form>
+        <div id="droplists" style="margin-top: 15px;">
+          <select id="selectStudent" onchange="javascript:student(this)">
+            <option>Choose a student</option>
+          </select>
+          <select id="selectSubject" onchange="javascript:subject(this)">
+            <option>Choose a subject</option>
+          </select>
+        </div>
+        <div id="Chart" style="margin-top: 15px;">
+          <canvas id="chart" width="500" height="500" style="border:1px solid #000000;">
+              Wygląda na to, że twoja przeglądarka nie obsługuje elementu "canvas"
+          </canvas>
+          <div id="legend"></div>
+        </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="arkusz.css"
+          media="screen"
+          type="text/css">
+    <title>
+      Lab 2
+    </title>
+  </head>
+  <body>
+    <header>
+      <h1>
+        Lab 2
+      </h1>
+    </header>
+ 
+    <nav>
+      <!--Tutaj menu nawigacyjne -->
+ 
+      <ul>
+        <li>
+          <a href="">Element 1</a>
+        </li>
+ 
+        <li>
+          <a href="">Element 2</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Tutaj treść panelu bocznego -->
+ 
+    <aside>
+      <h1>
+        Panel boczny
+      </h1>
+ 
+      <h2>
+        Ciekawe odsyłacze
+      </h2>
+ 
+      <ul>
+        <li>
+          <a href="">Odsyłacz 1</a>
+        </li>
+ 
+        <li>
+          <a href="">Odsyłacz 2</a>
+        </li>
+ 
+        <li>
+          <a href="">Odsyłacz 3</a>
+        </li>
+      </ul>
+    </aside>
+ 
+    <main>
+      <!--Tutaj treść strony-->
+      <script>
+            var variable = prompt("Wprowadź wartość", "");
+            document.write(typeof(variable));
+      </script>
+      <form>
+        <input name="pole_tekstowe" type="text">
+        <input type="button" value="Wypisz" onclick="javascript:show()">
+      </form>
+    </main>
+ 
+    <footer>
+      <!-- Tutaj treść stopki -->
+      <a href="mailto:twoj.adres.email">Imię Nazwisko</a>
+    </footer>
+  </body>
+  <script src="skrypt.js"></script>
+</html>
