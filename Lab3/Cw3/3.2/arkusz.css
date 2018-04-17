@@ -8,7 +8,7 @@ aside  {
   border-width: 1px;
   border-style: solid;
   border-color: #ABABAB;
-  transition: all 2s ease-in-out;
+  transition: all 3s ease-in-out;
 }
 footer {
   clear: both;
@@ -47,5 +47,5 @@ main {
   border-width: 2px;
   border-style: solid;
   border-color: #ABABAB;
-  transition: all 2s ease-in-out;
+  transition: all 3s ease-in-out;
 }

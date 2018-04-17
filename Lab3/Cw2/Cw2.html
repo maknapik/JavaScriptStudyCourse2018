@@ -8,13 +8,18 @@
           type="text/css">
     <script src="script.js"></script>
     <title>
-      Tytuł strony
+      Obracanie elementow
     </title>
   </head>
   <body>
     <form>
       <input type="button" value="Ustaw" onclick="javascript:addCSS()">
       <input type="button" value="Skasuj" onclick="javascript:removeCSS()">
+    </form>
+    <form>
+      <input type="button" value="Obróć" onclick="javascript:rotate()">
+      <input type="button" value="Uruchom" onclick="javascript:addTask()">
+      <input type="button" value="Zatrzymaj" onclick="javascript:deleteTask()">
     </form>
     <header class="azure">
       <h1>
@@ -62,7 +67,7 @@
       </ul>
     </aside>
  
-    <main class="azure">
+    <main id="main" class="azure">
       <!--Tutaj treść strony-->
  <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
 	<div class="flipper">

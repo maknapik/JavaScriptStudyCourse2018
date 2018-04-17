@@ -1,6 +1,3 @@
-let intervalID = 0
-let time = Math.random() * (5 - 2) + 2
-let angle = Math.random() * (180 - 20) + 20
 /*******************************************/
 function removeCSS()
 {
@@ -34,25 +31,37 @@ function addCSS()
     el[0].classList.remove("empty")
 }
 /*******************************************/
-function rotate()
+function addEvents()
 {
-    console.log("Rotating")
-    let main = document.getElementsByTagName("main")
-    let aside = document.getElementsByTagName("aside")
-    angle = (angle*2) % 360
-
-    main[0].style.transform = "rotateZ("+ angle + "deg)"
-
-    aside[0].style.transform = "rotateZ("+ -angle + "deg)"
+    var el = document.getElementsByTagName("header")
+    el[0].addEventListener('mouseover', showContent);
+    el = document.getElementsByTagName("aside")
+    el[0].addEventListener('mouseover', showContent);
+    el = document.getElementsByTagName("footer")
+    el[0].addEventListener('mouseover', showContent);
+    el = document.getElementsByTagName("nav")
+    el[0].addEventListener('mouseover', showContent);
+    el = document.getElementsByTagName("main")
+    el[0].addEventListener('mouseover', showContent);
+    el = document.getElementsByTagName("ul")
+    el[0].addEventListener('mouseover', showContent);
+    
 }
 /*******************************************/
-function addTask()
+function showContent()
 {
-    intervalID = setInterval(rotate, 1000*time)
+    sleep(1000)
+    console.log(this.textContent)
 }
 /*******************************************/
-function deleteTask()
+function sleep(milliseconds) 
 {
-    clearInterval(intervalID)
+    let start = new Date().getTime();
+    for (let i = 0; i < 1e7; i++) 
+    {
+        if ((new Date().getTime() - start) > milliseconds)
+        {
+            break;
+        }
+    }
 }
-/*******************************************/

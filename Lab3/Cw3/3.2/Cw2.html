@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="arkusz.css"
+          media="screen"
+          type="text/css">
+    <script src="script.js"></script>
+    <title>
+      Pokazywanie zawartości
+    </title>
+  </head>
+  <body>
+    <form>
+      <input type="button" value="Ustaw" onclick="javascript:addCSS()">
+      <input type="button" value="Skasuj" onclick="javascript:removeCSS()">
+    </form>
+    <form>
+      <input type="button" value="Obróć" onclick="javascript:rotate()">
+      <input type="button" value="Uruchom" onclick="javascript:addTask()">
+      <input type="button" value="Zatrzymaj" onclick="javascript:deleteTask()">
+    </form>
+    <header class="azure">
+      <h1>
+        Tytuł strony
+      </h1>
+    </header>
+ 
+    <nav>
+      <!--Tutaj menu nawigacyjne -->
+ 
+      <ul>
+        <li>
+          <a href="">Element 1</a>
+        </li>
+ 
+        <li>
+          <a href="">Element 2</a>
+        </li>
+      </ul>
+      <div style="clear: both;"></div>
+    </nav>
+    <!-- Tutaj treść panelu bocznego -->
+ 
+    <aside class="azure">
+      <h1>
+        Panel boczny
+      </h1>
+ 
+      <h2>
+        Ciekawe odsyłacze
+      </h2>
+ 
+      <ul>
+        <li>
+          <a href="">Odsyłacz 1</a>
+        </li>
+ 
+        <li>
+          <a href="">Odsyłacz 2</a>
+        </li>
+ 
+        <li>
+          <a href="">Odsyłacz 3</a>
+        </li>
+      </ul>
+    </aside>
+ 
+    <main id="main" class="azure">
+      <!--Tutaj treść strony-->
+ <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			<!-- front content -->
+		</div>
+		<div class="back">
+			<!-- back content -->
+		</div>
+	</div>
+</div>
+      <h1>
+        Treść strony
+      </h1>
+ 
+      <pre>
+Natenczas Wojski chwycił na taśmie przypięty
+Swój róg bawoli, długi, cętkowany, kręty
+Jak wąż boa, oburącz do ust go przycisnął,
+Wzdął policzki jak banię, w oczach krwią zabłysnął,
+Zasunął wpół powieki, wciągnął w głąb pół brzucha
+I do płuc wysłał z niego cały zapas ducha,
+I zagrał: róg jak wicher, wirowatym dechem
+Niesie w puszczę muzykę i podwaja echem.
+ 
+Umilkli strzelcy, stali szczwacze zadziwieni
+Mocą, czystością, dziwną harmoniją pieni.
+Starzec cały kunszt, którym niegdyś w lasach słynął,
+Jeszcze raz przed uszami myśliwców rozwinął;
+Napełnił wnet, ożywił knieje i dąbrowy,
+Jakby psiarnię w nie wpuścił i rozpoczął łowy.
+ 
+Bo w graniu była łowów historyja krótka:
+Zrazu odzew dźwięczący, rześki: to pobudka;
+Potem jęki po jękach skomlą: to psów granie;
+A gdzieniegdzie ton twardszy jak grzmot: to strzelanie.
+</pre>
+    </main>
+ 
+    <footer>
+      <!-- Tutaj treść stopki -->
+      <a href="mailto:twoj.adres.email">Imię Nazwisko</a>
+    </footer>
+    <script>addEvents()</script>
+  </body>
+</html>
