@@ -1,6 +1,13 @@
-const squareSize = 50
-const circleSize = 20
-let playerSpeed = 0.1;
+const squareSize = Math.floor((document.documentElement.clientWidth > document.documentElement.clientHeight ? document.documentElement.clientWidth : document.documentElement.clientHeight) / 40);
+const circleSize = Math.floor(document.documentElement.clientWidth / 80);
+let playerSpeed = 0.3;
+let change = 20;
+let squaresAmount = 1;
+/*********************************************************/
+let gamePoints = 0;
+let round = 1;
+/*********************************************************/
+let time = 60;
 /*********************************************************/
 let world;
 let renderer;
@@ -26,19 +33,43 @@ function initCanvas()
 	//ctx = canvas.getContext("2d");
 }
 /*********************************************************/
-function Square(lifeTime, posX, posY)
+function Square(posX, posY, lifeTime, points)
 {
 	this.lifeTime = lifeTime;
-	this.change = 5;
+	this.change = change;
 	this.state = 'z';
 	this.posX = posX;
 	this.posY = posY;
-	this.points = 10;
+	this.points = points;
 	
 	this.create = function()
 	{
-		this.body = Physics.body('rectangle', { x: posX, y: posY, vx: 0.0, vy: 0.0, height: 50, width: 50, 
-											   styles: {fillStyle: "#10d140",lineWidth: 1 }});
+		this.body = Physics.body('rectangle', { x: this.posX, y: this.posY, vx: 0.0, vy: 0.0, height: squareSize, width: squareSize,
+											   styles: {fillStyle: "#10d140" }});
+		
+		let canv = document.createElement('canvas');
+		canv.width = squareSize;
+		canv.height = squareSize;
+		let ct  = canv.getContext("2d");
+
+		ct.fillStyle = this.body.styles.fillStyle;
+		ct.fillRect(0, 0, squareSize, squareSize);
+
+		ct.fillStyle = "#202b59";
+		ct.beginPath();
+		ct.moveTo(0,0);
+		ct.lineTo(0,squareSize);
+		ct.lineTo(squareSize,squareSize);
+		ct.lineTo(squareSize,0);
+		ct.lineTo(0,0);
+		ct.stroke();
+
+		ct.fillStyle = "#000000";
+		ct.textAlign = "center"
+		ct.textBaseline = "middle";
+		ct.font = "15px sans-serif";
+		ct.fillText(this.points, squareSize / 2, squareSize / 2);
+		this.body.view = canv;
 		world.add(this.body);
 	}
 	
@@ -82,12 +113,30 @@ function Square(lifeTime, posX, posY)
 		{
 			this.state = 'c';
 			this.body.styles.fillStyle = "#8e1d4c";
-			this.body.view = null;
-		}
-		else 
-		{
-			this.state = 'z';
-			this.body.styles.fillStyle = "#10d140";
+			
+			let canv = document.createElement('canvas');
+			canv.width = squareSize;
+			canv.height = squareSize;
+			let ct  = canv.getContext("2d");
+			
+			ct.fillStyle = this.body.styles.fillStyle;
+			ct.fillRect(0, 0, squareSize, squareSize);
+
+			ct.fillStyle = "#202b59";
+			ct.beginPath();
+			ct.moveTo(0,0);
+			ct.lineTo(0,squareSize);
+			ct.lineTo(squareSize,squareSize);
+			ct.lineTo(squareSize,0);
+			ct.lineTo(0,0);
+			ct.stroke();
+
+			ct.fillStyle = "#000000";
+			ct.textAlign = "center"
+			ct.textBaseline = "middle";
+			ct.font = "15px sans-serif";
+			ct.fillText(this.points, squareSize / 2, squareSize / 2);
+			this.body.view = canv;
 		}
 	}
 }
@@ -102,7 +151,7 @@ function Player(name, posX, posY)
 	
 	this.create = function()
 	{
-		this.body = Physics.body('circle', {x: posX, y: posY, vx: 0.02, vy: 0.00, radius: 25,
+		this.body = Physics.body('circle', {x: posX, y: posY, vx: 0.02, vy: 0.00, radius: circleSize,
 											styles: { fillStyle: "#134693" , lineWidth: 1 }});
 		this.body.state.vel.set(playerSpeed, 0);
 		world.add(this.body);
@@ -137,99 +186,109 @@ function changeDirection(event)
 	else if(d == 's') player.direction = 3;
 	else if(d == 'd') player.direction = 0;
 	player.velocity();
-	console.log(player.body.state.vx);
-}
-/*********************************************************/
-function drawBackground()
-{
-	ctx.beginPath();
-	ctx.rect(0, 0, canvas.width, canvas.height);
-	ctx.fillStyle = "#8fb6c1";
-	ctx.fill();
-	ctx.closePath();
-}
-/*********************************************************/
-function drawSquares()
-{
-	for(let i = 0 ; i < squares.length ; i++)
-	{
-		squares[i].draw();
-	}
 }
 /*********************************************************/
 function draw()
 {
-	//drawBackground();
-	//drawSquares();
-	//player.actPosition();
-	//player.draw();
 	world.render();
 	requestID = window.requestAnimationFrame(draw)
 }
 /*********************************************************/
-function decLifetime()
+function moveTime()
 {
 	for(let i = 0 ; i < squares.length ; i++)
 	{
-		squares[i].declifeTime();
 		squares[i].decChange();
+		squares[i].declifeTime();
+		if(squares[i].lifeTime == 0)
+		{
+			world.removeBody(squares[i].body);
+			//delete squares[i];
+			squares[i] = new Square(Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * 40) + 10), Math.floor((Math.random() * 70) + 10));
+			squares[i].create();
+		}
 	}
+	time--;
+	if(time == 0)
+	{
+		let am = squares.length;
+		for(let i = 0 ; i < am ; i++)
+		{
+			world.removeBody(squares[0].body);
+			squares.shift();
+		}
+		console.log("len: " + squares.length);
+		for(let i = 0 ; i < Math.floor((Math.random() * (20 + squaresAmount)) + 10+ squaresAmount) ; i++)
+		{
+			squares.push(new Square(Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * 40) + 10), Math.floor((Math.random() * 70) + 10)));
+			squares[i].create();
+		}
+		
+		gamePoints += player.points;
+		playerSpeed *= 2;
+		change -= 5;
+		round++;
+		time = 60;
+		squaresAmount += 5;
+		showRound();
+	}
+	showTime();
 }
 /*********************************************************/
 function showPoints()
 {
 	document.getElementById("points").textContent = player.points;
 }
-
-Physics.body('square', 'rectangle', function (parent) {
-      var canv = document.createElement('canvas');
-      canv.width = squareSize;
-      canv.height = squareSize;
-      var ctx  = canv.getContext("2d");
-
-      return {
-           // Called when the body is initialized
-           init: function(options) {
-               parent.init.call(this, options);
-			   ctx.fillStyle = options.styles.fillStyle;
-      		   ctx.fillRect(0,0,squareSize,squareSize);
-			   ctx.fillStyle = "#000000";
-			   ctx.textAlign = "center"
-			   ctx.textBaseline = "middle";
-			   ctx.font = "15px sans-serif";
-               ctx.fillText("50",squareSize / 2,squareSize / 2);
-            },
-            // Called when the body is added to a world
-            connect: function() {
-                this.view = canv;
-            }
-      }
-  });
+/*********************************************************/
+function showName()
+{
+	document.getElementById("name").textContent = player.name;
+}
+/*********************************************************/
+function showTime()
+{
+	document.getElementById("time").textContent = time;
+}
+/*********************************************************/
+function showRound()
+{
+	document.getElementById("round").textContent = round;
+}
 /*********************************************************/
 function start()
 {
-	intervalID = setInterval(decLifetime, 1000);
+	//inicjalizacja wstępna
+	intervalID = setInterval(moveTime, 1000);
 	initCanvas();
 	world = Physics();
 	renderer = Physics.renderer("canvas", { el: "world", width: canvas.width, height: canvas.height, meta: false });	
 	world.add(renderer);
 	canvas.style.position = 'relative';
 	
-	world.add(Physics.behavior("edge-collision-detection", { aabb: Physics.aabb(0, 0, canvas.width, canvas.height), restitution: 0.01 }));
+	//dodawanie zdarzeń
+	world.add(Physics.behavior("edge-collision-detection", { aabb: Physics.aabb(0, 0, canvas.width, canvas.height), restitution: 0.05 }));
   	world.add(Physics.behavior("body-impulse-response"));
 	world.add(Physics.behavior("body-collision-detection"));
 	world.add(Physics.behavior("sweep-prune"));
-
+	
+	//tworzenie gracza
 	player = new Player("Jan", 40, 40);
 	player.create();
 	document.addEventListener("keyup", changeDirection);
 	
-	for(let i = 0 ; i < 10 ; i++)
+	showName();
+	showPoints();
+	showTime();
+	showRound();
+	
+	//generowanie kwadratów
+	for(let i = 0 ; i < Math.floor((Math.random() * (20 + squaresAmount)) + 10+ squaresAmount) ; i++)
 	{
-		squares.push(new Square(40, 10+50*i, 10+50*1));
+		squares.push(new Square(Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * 40) + 10), Math.floor((Math.random() * 70) + 10)));
 		squares[i].create();
 	}
 	
+	//obsługa kolizji
 	world.on('collisions:detected', function( data ){
 		var c;
 		for (var i = 0, l = data.collisions.length; i < l; i++)
@@ -241,11 +300,12 @@ function start()
 				{
 					if(squares[i].state == 'z')
 					{
-						player.points += 10;
+						player.points += squares[i].points;
+						squares[i].changeState();
 					}
 					else
 					{
-						player.points -= 10;
+						player.points -= squares[i].points;
 					}
 					showPoints();
 				}
@@ -253,11 +313,12 @@ function start()
 				{
 					if(squares[i].state == 'z')
 					{
-						player.points += 10;
+						player.points += squares[i].points;
+						squares[i].changeState();
 					}
 					else
 					{
-						player.points -= 10;
+						player.points -= squares[i].points;
 					}
 					showPoints();
 				}
@@ -266,60 +327,9 @@ function start()
 
 		}
 	});
-	let text = Physics.body('square', {
-     x: 50,
-     y: 570,
-     width: 50,
-     height: 50,
-     points: 50, styles: {
-								fillStyle: "#e5c422"
-								,lineWidth: 1
-								
-							}
- });
-	world.add(text);
-	text.styles.fillStyle = "#e5c422";
-	$("#world").click(function(e) {
-		console.log("dd");
-		//pl.accelerate(0.1);
-		var offset = $(this).offset();
-		var px = e.pageX - offset.left;
-		var py = e.pageY - offset.top;
-		// this is the way physicsjs handles 2d vectors, similar at Box2D's b2Vec
-		var mousePos = Physics.vector();
-		mousePos.set(px,py);
-		// finding a body under mouse position
-		var body = world.findOne({
-			$at: mousePos
-		})
-		// there isn't any body under mouse position, going to create a new box
-		if(!body){
-			body = Physics.body('rectangle', {
-						x: px,
-						y: py,
-						vx: 0.01, vy: 0.1,height:50,
-						width: 50,styles: {
-								fillStyle: '0xd33682'
-								,lineWidth: 1
-								
-							}
-					});
-			
-			body.state.vel.set(-1,1);
-			world.add(body);
-		}
-		else{
-			// there is a body under mouse position, let's remove it
-			world.removeBody(body);
-		} 
-	})
 	
-	Physics.util.ticker.on(function( time, dt ){
-    world.step( time );
-});
-
-// start the ticker
-Physics.util.ticker.start();
+	Physics.util.ticker.on(function( time, dt ) { world.step( time ); });
+	Physics.util.ticker.start();
 }
 /*********************************************************/
 /*********************************************************/
