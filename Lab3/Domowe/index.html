@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Gra</title>
+	<link rel="stylesheet" href="style.css" media="screen" type="text/css">
+	<script src="physicsjs-full.js"></script>
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="game.js"></script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="game">
+			<div id="border">
+				<canvas id="world"></canvas>
+			</div>
+		</div>
+		<div id="stats">
+			<table id="gameStats">
+			  <caption>Game</caption>
+			  <thead>
+				<tr class="tableHeader">
+				  <th>Name</th>
+				  <th>Points</th>
+				  <th>Time</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr class="dataRow">
+				  <td></td>
+				  <td id="points"></td>
+				  <td></td>
+				</tr>
+			  </tbody>
+			</table>
+			<table id="bestPlayers">
+			  <caption>Best players</caption>
+			  <thead>
+				<tr class="tableHeader">
+				  <th></th>
+				  <th>Name</th>
+				  <th>Points</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr class="dataRow">
+				  <td>1</td>
+				  <td></td>
+				  <td></td>
+				</tr>
+				<tr class="dataRow">
+				  <td>2</td>
+				  <td></td>
+				  <td></td>
+				</tr>
+				<tr class="dataRow">
+				  <td>3</td>
+				  <td></td>
+				  <td></td>
+				</tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+	<script>start();draw();</script>
+</body>
+</html>
