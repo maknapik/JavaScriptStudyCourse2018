@@ -1,13 +1,18 @@
 const squareSize = Math.floor((document.documentElement.clientWidth > document.documentElement.clientHeight ? document.documentElement.clientWidth : document.documentElement.clientHeight) / 40);
 const circleSize = Math.floor(document.documentElement.clientWidth / 80);
-let playerSpeed = 0.3;
+let playerSpeed = 0.2;
 let change = 20;
+let lifeTime = 20;
 let squaresAmount = 1;
 /*********************************************************/
 let gamePoints = 0;
 let round = 1;
 /*********************************************************/
+let breakFlag = false;
+let game = false;
+/*********************************************************/
 let time = 60;
+let breakTime = 3;
 /*********************************************************/
 let world;
 let renderer;
@@ -20,7 +25,7 @@ let player;
 let bestPlayers = [];
 /*********************************************************/
 let requestID;
-let rvalID;
+let intervalID;
 /*********************************************************/
 function initCanvas()
 {
@@ -35,12 +40,13 @@ function initCanvas()
 /*********************************************************/
 function Square(posX, posY, lifeTime, points)
 {
-	this.lifeTime = lifeTime;
+	this.lifeTime = parseInt(lifeTime);
 	this.change = change;
 	this.state = 'z';
 	this.posX = posX;
 	this.posY = posY;
 	this.points = points;
+	this.break = false;
 	
 	this.create = function()
 	{
@@ -151,9 +157,8 @@ function Player(name, posX, posY)
 	
 	this.create = function()
 	{
-		this.body = Physics.body('circle', {x: posX, y: posY, vx: 0.02, vy: 0.00, radius: circleSize,
+		this.body = Physics.body('circle', {x: posX, y: posY, vx: 0.0, vy: 0.001, radius: circleSize,
 											styles: { fillStyle: "#134693" , lineWidth: 1 }});
-		this.body.state.vel.set(playerSpeed, 0);
 		world.add(this.body);
 	}
 	
@@ -178,8 +183,16 @@ function Player(name, posX, posY)
 	}
 }
 /*********************************************************/
+function comparePlayer(a, b)
+{
+	if(a.points < b.points) return 1;
+	if(a.ponts > b.points) return -1;
+	return 0;
+}
+/*********************************************************/
 function changeDirection(event)
 {
+	if(breakFlag) return;
 	let d = event.key;
 	if(d == 'w') player.direction = 1;
 	else if(d == 'a') player.direction = 2;
@@ -194,8 +207,20 @@ function draw()
 	requestID = window.requestAnimationFrame(draw)
 }
 /*********************************************************/
+function wrongStartPos(posX, posY)
+{
+	let X = player.posX;
+	let Y = player.posY;
+	if((posX > X - circleSize*2) && (posY > Y - circleSize*2) && (posX < X + circleSize*2) && (posY < Y + circleSize*2))
+	{
+		return true;
+	}
+	return false;
+}
+/*********************************************************/
 function moveTime()
 {
+	console.log(player.body.state.vx + " " + player.body.vy);
 	for(let i = 0 ; i < squares.length ; i++)
 	{
 		squares[i].decChange();
@@ -204,12 +229,39 @@ function moveTime()
 		{
 			world.removeBody(squares[i].body);
 			//delete squares[i];
-			squares[i] = new Square(Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * 40) + 10), Math.floor((Math.random() * 70) + 10));
+			let posX = Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10);
+			let posY = Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10);
+			let vector = Physics.vector();
+			vector.set(posX, posY);
+			let body = world.findOne({$at: vector});
+			if(body || wrongStartPos(posX, posY)) 
+			{
+				i--;
+				continue;
+			}
+			squares[i] = new Square(posX, posY, lifeTime + Math.floor((Math.random() * 10) + 5), Math.floor((Math.random() * 60) + 10));
 			squares[i].create();
 		}
+		if(squares[i].break) squares[i].break = false;
+	}
+	if(time == 0)
+	{
+		clearInterval(intervalID);
+		if(round < 3)
+		{
+			intervalID = setInterval(showBreak, 1000);
+			breakFlag = true;
+			document.getElementById("modalRound").style.display = "block";
+		}
+		else moveRound();
 	}
 	time--;
-	if(time == 0)
+	showTime();
+}
+/*********************************************************/
+function moveRound()
+{
+	if(round < 3)
 	{
 		let am = squares.length;
 		for(let i = 0 ; i < am ; i++)
@@ -217,22 +269,63 @@ function moveTime()
 			world.removeBody(squares[0].body);
 			squares.shift();
 		}
-		console.log("len: " + squares.length);
+
 		for(let i = 0 ; i < Math.floor((Math.random() * (20 + squaresAmount)) + 10+ squaresAmount) ; i++)
 		{
-			squares.push(new Square(Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * 40) + 10), Math.floor((Math.random() * 70) + 10)));
+			let posX = Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10);
+			let posY = Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10);
+			let vector = Physics.vector();
+			vector.set(posX, posY);
+			let body = world.findOne({$at: vector});
+			if(body || wrongStartPos(posX, posY)) 
+			{
+				i--;
+				continue;
+			}
+			squares.push(new Square(posX, posY, lifeTime + Math.floor((Math.random() * 10) + 5), Math.floor((Math.random() * 60) + 10)));
 			squares[i].create();
 		}
 		
 		gamePoints += player.points;
-		playerSpeed *= 2;
+		playerSpeed *= 1.5;
 		change -= 5;
+		lifeTime -= 5;
 		round++;
 		time = 60;
+		showTime();
 		squaresAmount += 5;
 		showRound();
+		breakFlag = false;
+		document.getElementById("breakSecs").textContent = breakTime;
+		intervalID = setInterval(moveTime, 1000);
 	}
-	showTime();
+	else if(round == 3)
+	{
+		clearInterval(moveTime);
+		document.getElementById("modalEnd").style.display = "block";
+		
+		document.getElementById("points").textContent = "";
+		document.getElementById("name").textContent = "";
+		if(time >= 0) document.getElementById("time").textContent = "";
+		document.getElementById("round").textContent = "";
+		
+		updateHighscore();
+		showHighscore();
+		restart();
+	}
+}
+/*********************************************************/
+function showBreak()
+{
+	breakTime--;
+	document.getElementById("breakSecs").textContent = breakTime;
+	if(breakTime == 0)
+	{
+		clearInterval(intervalID);
+		document.getElementById("modalRound").style.display = "none";
+		breakTime = 3;
+		moveRound();
+	}
 }
 /*********************************************************/
 function showPoints()
@@ -247,7 +340,7 @@ function showName()
 /*********************************************************/
 function showTime()
 {
-	document.getElementById("time").textContent = time;
+	if(time >= 0) document.getElementById("time").textContent = time;
 }
 /*********************************************************/
 function showRound()
@@ -255,8 +348,67 @@ function showRound()
 	document.getElementById("round").textContent = round;
 }
 /*********************************************************/
+function showHighscore()
+{
+	let rows = document.getElementById("bestPlayers").getElementsByClassName("dataRow");
+	for(let i = 0 ; i < bestPlayers.length ; i++)
+	{
+		let col = rows[i].getElementsByTagName("td");
+		col[1].textContent = bestPlayers[i].name;
+		col[2].textContent = bestPlayers[i].points;
+	}
+}
+/*********************************************************/
+function showLogin()
+{
+	if(!game)
+	{
+		document.getElementById('modalForm').style.display = "block"
+	}
+}
+/*********************************************************/
+function updateHighscore()
+{
+	bestPlayers.push(player);
+	bestPlayers.sort(comparePlayer);
+	if(bestPlayers.length > 3) bestPlayers.pop();
+}
+/*********************************************************/
+function restart()
+{
+	for(let i = 0 ; i < squares.length ; i++)
+	{
+		world.removeBody(squares[i].body);
+	}
+	world.removeBody(player.body);
+	delete canvas;
+	delete world;
+	delete renderer;
+	delete player;
+	delete squares;
+	playerSpeed = 0.2;
+	change = 20;
+	lifeTime = 20;
+	squaresAmount = 1;
+	gamePoints = 0;
+	round = 1;
+	breakFlag = false;
+	time = 60
+	showTime();
+	breakTime = 3;
+	squares = [];
+	clearInterval(intervalID);
+	game = false;
+	document.getElementById("play").style.display = "block";
+}
+/*********************************************************/
 function start()
 {
+	if(game) return;
+	game = true;
+	document.getElementById("play").style.display = "none";
+	document.getElementById('modalForm').style.display = "none";
+	console.log("Start");
 	//inicjalizacja wstępna
 	intervalID = setInterval(moveTime, 1000);
 	initCanvas();
@@ -272,7 +424,7 @@ function start()
 	world.add(Physics.behavior("sweep-prune"));
 	
 	//tworzenie gracza
-	player = new Player("Jan", 40, 40);
+	player = new Player(document.forms["Form"]["name"].value, canvas.width / 2, canvas.height / 2);
 	player.create();
 	document.addEventListener("keyup", changeDirection);
 	
@@ -282,9 +434,19 @@ function start()
 	showRound();
 	
 	//generowanie kwadratów
-	for(let i = 0 ; i < Math.floor((Math.random() * (20 + squaresAmount)) + 10+ squaresAmount) ; i++)
+	for(let i = 0 ; i < Math.floor((Math.random() * (20 + squaresAmount)) + 10 + squaresAmount) ; i++)
 	{
-		squares.push(new Square(Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10), Math.floor((Math.random() * 40) + 10), Math.floor((Math.random() * 70) + 10)));
+		let posX = Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10);
+		let posY = Math.floor((Math.random() * (canvas.width - squareSize*2)) + 10);
+		let vector = Physics.vector();
+		vector.set(posX, posY);
+		let body = world.findOne({$at: vector});
+		if(body || wrongStartPos(posX, posY)) 
+		{
+			i--;
+			continue;
+		}
+		squares.push(new Square(posX, posY, lifeTime + Math.floor((Math.random() * 10) + 5), Math.floor((Math.random() * 60) + 10)));
 		squares[i].create();
 	}
 	
@@ -296,7 +458,7 @@ function start()
 			c = data.collisions[ i ];
 			for(let i = 0 ; i < squares.length ; i++)
 			{
-				if(c.bodyA === player.body && c.bodyB === squares[i].body)
+				if(c.bodyA === player.body && c.bodyB === squares[i].body && !breakFlag && !squares[i].break)
 				{
 					if(squares[i].state == 'z')
 					{
@@ -308,8 +470,9 @@ function start()
 						player.points -= squares[i].points;
 					}
 					showPoints();
+					squares[i].break = true;
 				}
-				if(c.bodyB === player.body && c.bodyA === squares[i].body)
+				if(c.bodyB === player.body && c.bodyA === squares[i].body && !breakFlag && !squares[i].break)
 				{
 					if(squares[i].state == 'z')
 					{
@@ -321,6 +484,7 @@ function start()
 						player.points -= squares[i].points;
 					}
 					showPoints();
+					squares[i].break = true;
 				}
 			}
 			
@@ -330,7 +494,9 @@ function start()
 	
 	Physics.util.ticker.on(function( time, dt ) { world.step( time ); });
 	Physics.util.ticker.start();
+	
+	draw();
+	
 }
-/*********************************************************/
 /*********************************************************/
 /*********************************************************/
