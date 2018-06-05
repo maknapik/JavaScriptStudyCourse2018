@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Formularz
+    </title>
+    <script>
+      setInterval(getDate, 1000);
+      /*****************************************************************/
+      /* Funkcja wykonująca (asynchroniczne) zapytanie  do serwera WWW */
+      /*****************************************************************/
+      function fetchPOST() {
+       fetch("/submit", {
+          method: 'POST',
+          headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+            }),
+          body: "imie="+document.forms[0]['imie'].value // <-- Post parameters
+        })
+        .then((response) => response.text())
+        .then((responseText) => {
+          alert(responseText);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+      }
+      function fetchGET() {
+       fetch("/submit?imie="+document.forms[0]['imie'].value, {
+          method: 'GET',
+          headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+            }),
+        })
+        .then((response) => response.text())
+        .then((responseText) => {
+          alert(responseText);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+      }
+
+      function getDate() {
+        fetch("/date", {
+          method: 'GET',
+          headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+            }),
+        })
+        .then((response) => response.text())
+        .then((responseText) => {
+          document.getElementById("date").textContent = responseText;
+          var date = new Date();
+          document.getElementById("date2").textContent = date.toGMTString();
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+      }
+
+      function ajaxGET() {
+        //Utworzenie obiektu reprezentującego żądanie do serwera WWW - patrz https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+        var xhr = new XMLHttpRequest(); 
+        console.log("imie: " + document.forms[0]['imie'].value);
+        //Rejestracja funkcji (użytkownika), która będzie przetwarzać odpowiedź otrzymaną od serwera
+        xhr.onreadystatechange = () => response(xhr); 
+ 
+        //Wykonanie (asynchronicznego) zapytania do serwera WWW
+        xhr.open('GET', '/submit?imie=' + document.forms[0]['imie'].value, true); 
+        xhr.send(null);
+        //Przykłady użycia powyższych metod - patrz https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
+      }
+      function ajaxPOST() {
+        var xhr = new XMLHttpRequest(); 
+        //Rejestracja funkcji (użytkownika), która będzie przetwarzać odpowiedź otrzymaną od serwera
+        xhr.onreadystatechange = () => response(xhr); 
+        xhr.open('POST' , "/submit" , true );
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        var values = 'imie=' + document.forms[0]['imie'].value;
+        console.log('values: ' + values);
+        xhr.send(values);
+      }
+      /***********************************************/
+      /* Funkcja przetwarzająca odpowiedź od serwera */
+      /***********************************************/
+      function response(xhr){
+        try { 
+          if (xhr.readyState == XMLHttpRequest.DONE) { //Jeżeli odpowiedź jest gotowa 
+            if (xhr.status == 200){                    //Jeżeli żądanie było prawidłowe
+ 
+               //Jeżeli odbierane dane są zwykłym tekstem lub dokumentem JSON, to użyj poniższego kodu
+               var received_data = xhr.responseText; //Odbierz odpowiedź w postaci napisu
+               window.alert(received_data);          //i wyświetl go
+ 
+               //Jeżeli odbierane dane są dokumentem HTML lub XML, to użyj poniższego kodu
+               //var xmlDoc = xhr.responseXML; //Odbierz odpowiedź w postaci obiektu 'XmlDocument', do którego można uzyskać za pomocą metod DOM  - patrz https://www.w3.org/TR/domcore/
+            }
+            else 
+               window.alert('Wystąpił problem z tym żądaniem.');
+          }
+        } 
+        catch(e) {      
+          window.alert('Złapany wyjątek: ' + e.description);
+        } 
+     }
+    </script>
+  </head>
+  <body>
+    <main>
+      <div id="date">
+      </div>
+      <div id="date2">
+        </div>
+      <form method="post"
+            action="/submit">
+            <input type="text" name="imie">
+        <label>Wykonaj zapytanie do serwera WWW</label> 
+        <input type="submit" value="Bez użycia AJAX"> 
+        <input type="button" value="AjaxGET" onclick="ajaxGET()">
+        <input type="button" value="AjaxPOST" onclick="ajaxPOST()">
+        <input type="button" value="FetchGET" onclick="fetchGET()">
+        <input type="button" value="FetchPOST" onclick="fetchPOST()">
+        
+      </form>
+    </main>
+  </body>
+</html>

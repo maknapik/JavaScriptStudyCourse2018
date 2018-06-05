@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include head.ejs %>
+</head>
+<% include header.ejs %>
+    <div class="row">
+        <% students.forEach(function(student) { %>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2><a href="/student/<%= student._id %>/"><%= student.name %> <%= student.surname %></a></h2>
+                    </div>
+                    <div class="panel-body">
+                        <% student.subjects.forEach(function(subject) { %>
+                            <% if(subject.teacher.toString() === user.id.toString()) { %>
+                                <p style="color: #255dff"><b>Subject:</b> <%= subject.name %></p>
+                            <% } else { %>
+                                <p><b>Subject:</b> <%= subject.name %></p>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

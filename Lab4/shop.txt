@@ -1,0 +1,3 @@
+banan 10.0 zywnosc 50
+klucz 24.0 narzedzia 30
+komputer 1450.0 elektronika 3

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Formularz
+    </title>
+    <script>
+        setInterval(getCompany, Math.floor((Math.random() * (400-100+1)) + 1000));
+      /*****************************************************************/
+      /* Funkcja wykonująca (asynchroniczne) zapytanie  do serwera WWW */
+      /*****************************************************************/
+      function getCompany()
+      {
+        fetch("/company", {
+          method: 'GET',
+          headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+            }),
+        })
+        .then((response) => response.text())
+        .then((responseText) => {
+            console.log('response: ' + responseText);
+            var obj = JSON.parse(responseText);
+            //document.getElementById("company").textContent = obj.name;
+
+            
+            if(obj.name === 'KGHM') {
+                let c = document.getElementById("canvas1");
+                let ctx = c.getContext("2d");
+                ctx.fillStyle = "#FF0000";
+                ctx.fillRect(0, 0, obj.value, obj.value);
+            }
+            if(obj.name === 'Intel') {
+                let c = document.getElementById("canvas2");
+                let ctx = c.getContext("2d");
+                ctx.fillStyle = "#0000FF";
+                ctx.fillRect(0, 0, obj.value, obj.value);
+            }
+            if(obj.name === 'Nvidia') {
+                let c = document.getElementById("canvas3");
+                let ctx = c.getContext("2d");
+                ctx.fillStyle = "#00FF00";
+                ctx.fillRect(0, 0, obj.value, obj.value);
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+      }
+      /***********************************************/
+      /* Funkcja przetwarzająca odpowiedź od serwera */
+      /***********************************************/
+      /*function response(xhr){
+        try { 
+          if (xhr.readyState == XMLHttpRequest.DONE) { //Jeżeli odpowiedź jest gotowa 
+            if (xhr.status == 200){                    //Jeżeli żądanie było prawidłowe
+ 
+               //Jeżeli odbierane dane są zwykłym tekstem lub dokumentem JSON, to użyj poniższego kodu
+               var received_data = xhr.responseText; //Odbierz odpowiedź w postaci napisu
+               window.alert(received_data);          //i wyświetl go
+ 
+               //Jeżeli odbierane dane są dokumentem HTML lub XML, to użyj poniższego kodu
+               //var xmlDoc = xhr.responseXML; //Odbierz odpowiedź w postaci obiektu 'XmlDocument', do którego można uzyskać za pomocą metod DOM  - patrz https://www.w3.org/TR/domcore/
+            }
+            else 
+               window.alert('Wystąpił problem z tym żądaniem.');
+          }
+        } 
+        catch(e) {      
+          window.alert('Złapany wyjątek: ' + e.description);
+        } 
+     }*/
+    </script>
+  </head>
+  <body>
+    <main>
+      <div id="company">
+      </div>
+      <div style="float: left">
+            <canvas id="canvas1" width="20" height="200" style="border:1px solid #000000;">
+                </canvas>
+                <p>KGHM</p>
+      </div>
+      <div style="float: left">
+        <canvas id="canvas2" width="20" height="200" style="border:1px solid #000000;">
+            </canvas>
+            <p>Intel</p>
+        </div>
+        <div style="float: left">
+            <canvas id="canvas3" width="20" height="200" style="border:1px solid #000000;">
+                </canvas>
+                <p>Nvidia</p>
+                </div>
+      <form method="post"
+            action="/company">
+        <input type="button" value="AjaxGET" onclick="getCompany()">
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+aplikacja Expressowa
+pobiera nazwę z serwisu sejmometr (czy jakoś tak)
+
+3.2
+Na podstawie danych przez API https://mojepanstwo.pl/api/sejmometr
+wyswietl w postaci listy wykaz posłów posortowany malejąco względem sumy wydatków
+
+3.3
+Dodaj obsługę formularza określamy w nim sposób sortowania (malejąco/rosnąco) oraz wykaz
+klubów poselskich kktórych dotyczy wykaz posłów

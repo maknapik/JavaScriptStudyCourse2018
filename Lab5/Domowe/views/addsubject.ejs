@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include head.ejs %>
+</head>
+<body>
+<% include header.ejs %>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Add subject</h2>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="/teacher/<%= teacher._id %>/addsubject/">
+                        <div class="form-group">
+                            <label>Subject name</label>
+                            <input type="text" name="name">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add subject</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
