@@ -1,0 +1,24 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.row {
+    margin-left: 0;
+}
+
+.col-sm-6 {
+    padding: 0 0;
+}
+
+.file {
+  word-wrap: break-word;
+}
+
+.file:hover {
+  background-color: #99a2a4;
+}
+
+.active {
+  background-color: #99a2a4;
+}

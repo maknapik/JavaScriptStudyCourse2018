@@ -1,0 +1,45 @@
+{
+  "name": "tutorial",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.48",
+    "bootstrap": "^4.1.1",
+    "create-react-class": "^15.6.3",
+    "jquery": "^3.3.1",
+    "meteor-node-stubs": "^0.4.1",
+    "popper.js": "^1.14.3",
+    "react": "^16.4.0",
+    "react-addons-pure-render-mixin": "^15.6.2",
+    "react-dom": "^16.4.0",
+    "react-meteor-data": "^0.2.11",
+    "react-mounter": "^1.2.0",
+    "semantic-ui-react": "^0.81.1"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/main.js"
+    },
+    "testModule": "test/main.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "postcss": "^6.0.22",
+    "postcss-load-config": "^1.2.0"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }
+  }
+}
