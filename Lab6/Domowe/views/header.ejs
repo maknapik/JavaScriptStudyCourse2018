@@ -1,0 +1,70 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">Dziekanat</a>
+        </div>
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <% if(user) { %>
+                    <li class="nav-item">
+                        <% if(user instanceof Student) { %>
+                            <a href="/student/<%= user.id %>/">
+                                <span class="glyphicon glyphicon-user"></span>
+                                Profile
+                            </a>
+                        <% } else { %>
+                        <a href="/teacher/<%= user.id %>/">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Profile
+                        </a>
+                        <% } %>
+                    </li>
+                    <% if(user instanceof Teacher) { %>
+                        <li class="nav-item">
+                            <a href="/student">
+                                <span class="glyphicon glyphicon-education"></span>
+                                Students
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/teacher/<%= user._id %>/addsubject/">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                Add subject
+                            </a>
+                        </li>
+                    <% } %>
+                <% } %>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <% if(!user) { %>
+                    <li class="nav-item">
+                        <a href="/users/login">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/register">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            Register
+                        </a>
+                    </li>
+                <% } %>
+                <% if(user) { %>
+                    <li class="nav-item">
+                        <a href="/users/logout">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            Logout
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

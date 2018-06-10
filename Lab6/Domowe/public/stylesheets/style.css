@@ -1,0 +1,38 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: url('../images/background3.jpg');
+    background-attachment: fixed;
+}
+
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+}
+
+.row {
+  margin: 0 0;
+}
+
+.navbar {
+  border-radius: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.panel-default {
+  border-color: #101010;
+}
+
+.panel-heading {
+  border-radius: 0;
+}
+
+.panel-default>.panel-heading {
+  background-color: #222222;
+  color: #9D9D9D;
+  border: none;
+}
+
+.panel-default>.panel-body {
+  background-color: #9D9D9D;
+}

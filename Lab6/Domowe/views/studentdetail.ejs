@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include head.ejs %>
+</head>
+<% include header.ejs %>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Name</h2>
+            </div>
+            <div class="panel-body">
+                <p><%= student.name%></p>
+                <p><%= student.surname%></p>
+            </div>
+        </div>
+    </div>
+
+    <% if(user instanceof Teacher) { %>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Add to subject</h2>
+            </div>
+            <div class="panel-body">
+                <% user.subjects.forEach(function(element) { %>
+                    <div class="col-sm-12">
+                        <form method="post" action="/student/<%= student._id %>/addsubject/">
+                            <label><%= element.name %></label>
+                            <input type="hidden" name="name" value="<%= element.name %>">
+                            <input type="hidden" name="teacher" value="<%= user.id %>">
+                            <button class="btn btn-primary" type="submit">Add</button>
+                        </form>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Subjects</h2>
+            </div>
+            <div class="panel-body">
+                <% for(var i = 0 ; i < student.subjects.length ; i++) { %>
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                <h3>Name: <%= student.subjects[i].name %>, Teacher: <a href="/teacher/<%= student.subjects[i].teacher._id %>"><%= student.subjects[i].teacher.name %> <%= student.subjects[i].teacher.surname %></a></h3>
+                                <% if(student.subjects[i].teacher._id == user.id && user instanceof Teacher) { %>
+                                <form method="post" action="/student/<%= student._id %>/deletesubject/">
+                                    <input type="hidden" name="id" value="<%= student.subjects[i]._id %>">
+                                    <button class="btn btn-primary" type="submit">Delete from subject</button>
+                                </form>
+                                <% } %>
+                            </div>
+                            <div class="panel-body">
+                                <% if(student.subjects[i].teacher._id == user.id && user instanceof Teacher) { %>
+                                <div class="text-center" style="border: 1px solid; padding: 5px;">
+                                    <form method="post" action="/student/<%= student._id %>/addmark/<%= student.subjects[i]._id %>/">
+                                        <input type="text" name="mark">
+                                        <button class="btn btn-primary" type="submit">Add mark</button>
+                                    </form>
+                                </div>
+                                <% } %>
+                                <h3>Marks</h3>
+                                <% for(var k = 0 ; k < student.subjects[i].marks.length ; k++) { %>
+                                    <div class="col-sm-12">
+                                        <h4 style="float: left; margin-right: 15px"><%= student.subjects[i].marks[k].value %></h4>
+                                        <% if(student.subjects[i].teacher._id == user.id && user instanceof Teacher) { %>
+                                            <form style="float: left; margin-right: 10px;" method="post" action="/student/<%= student._id %>/deletemark/<%= student.subjects[i]._id %>/">
+                                                <input type="hidden" name="mark" value="<%= student.subjects[i].marks[k]._id %>">
+                                                <button class="btn btn-primary" type="submit">Delete</button>
+                                            </form>
+                                            <form method="post" action="/student/<%= student._id %>/editmark/<%= student.subjects[i]._id %>/">
+                                                <input type="text" name="value" size="5" required>
+                                                <input type="hidden" name="mark" value="<%= student.subjects[i].marks[k]._id %>">
+                                                <button class="btn btn-primary" type="submit">Edit</button>
+                                            </form>
+                                        <% } %>
+                                    </div>
+                                <% }%>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
