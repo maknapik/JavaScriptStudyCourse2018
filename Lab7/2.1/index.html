@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+    <title>
+      Formularz
+    </title>
+    <script>
+      function POST() {
+        var tab = $("#numbers").val();
+        $.post("/process",
+        {
+            numbers: tab
+        },
+        function(data, status){
+          data = JSON.parse(data);
+          data = data.reduce((prev, next) => prev + " " + next);
+          $("#numbers").val(data);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <input type="text" id="numbers"/>
+      <button onclick="POST()">Click</button>
+    </main>
+  </body>
+</html>

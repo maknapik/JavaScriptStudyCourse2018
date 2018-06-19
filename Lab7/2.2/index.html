@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+          integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+          crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+          integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+          crossorigin="anonymous"></script>
+    <title>
+      Formularz
+    </title>
+    <style>
+      td {
+        border: 1px solid;
+        width: 100%;
+      }
+    </style>
+    <script>
+      $(document).ready(function(){
+          $("#path").blur(() => {
+          POST();
+        });
+      });
+
+      function POST() {
+        console.log("POST");
+        var p = $("#path").val();
+        $.post("/directory",
+        {
+            path: p
+        },
+        function(data, status){
+          data = JSON.parse(data);
+          console.log(data);
+          $("td").remove();
+          for(let i = 0, r = 0 ; i < data.length ; i++) {
+            if(i % 4 == 0) {
+              r++;
+              $('#board').append('<tr id="row' + r + '"></tr>');
+            }
+            $('#row' + r).append('<td class=' + data[i].type + '>' + data[i].file + '</td>');
+          }
+          $(".D").click((event) => {
+            if($("#path").val().indexOf($(event.target).text()) == -1) {
+              $("#path").val($("#path").val() + '/' + $(event.target).text());
+            }
+            POST();
+          })
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <input type="text" id="path"/>
+      <button onclick="POST()">Click</button>
+    </main>
+    <table id="board" style="border: 1px solid;">
+        <tr id="row">
+        </tr>
+    </table>
+  </body>
+</html>
